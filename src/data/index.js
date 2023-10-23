@@ -19,7 +19,7 @@ const Profile_Menu = [
     icon: <Gear />,
   },
   {
-    title: "Profile",
+    title: "Logout",
     icon: <SignOut />,
   },
 ];
@@ -74,7 +74,7 @@ const ChatList = [
     msg: faker.music.songName(),
     time: "10:35",
     unread: 3,
-    pinned: false,
+    pinned: true,
     online: true,
   },
   {
@@ -199,6 +199,87 @@ const Chat_History = [
   },
 ];
 
+const SHARED_LINKS=[
+  {
+    type:"msg",
+    subtype:"link",
+    preview:faker.image.cats(),
+    message:"Yep, I can also do that",
+    incoming:true,
+    outgoing:false,
+  },
+  {
+    type:"msg",
+    subtype:"link",
+    preview:faker.image.cats(),
+    message:"Yep, I can also do that",
+    incoming:true,
+    outgoing:false,
+  },
+  {
+    type:"msg",
+    subtype:"link",
+    preview:faker.image.cats(),
+    message:"Yep, I can also do that",
+    incoming:true,
+    outgoing:false,
+  },
+  {
+    type:"msg",
+    subtype:"link",
+    preview:faker.image.cats(),
+    message:"Yep, I can also do that",
+    incoming:true,
+    outgoing:false,
+  },
+  {
+    type:"msg",
+    subtype:"link",
+    preview:faker.image.cats(),
+    message:"Yep, I can also do that",
+    incoming:true,
+    outgoing:false,
+  },
+
+];
+const SHARED_DOCS=[
+  {
+    type:"msg",
+    subtype:"doc",
+    message:"Yes sure, here you go.",
+    incoming :true,
+    outgoing:false
+  },
+  {
+    type:"msg",
+    subtype:"doc",
+    message:"Yes sure, here you go.",
+    incoming :true,
+    outgoing:false
+  },
+  {
+    type:"msg",
+    subtype:"doc",
+    message:"Yes sure, here you go.",
+    incoming :true,
+    outgoing:false
+  },
+  {
+    type:"msg",
+    subtype:"doc",
+    message:"Yes sure, here you go.",
+    incoming :true,
+    outgoing:false
+  },
+  {
+    type:"msg",
+    subtype:"doc",
+    message:"Yes sure, here you go.",
+    incoming :true,
+    outgoing:false
+  },
+];
+
 const Message_options = [
   {
     title: "Reply",
@@ -227,4 +308,6 @@ export {
   ChatList,
   Chat_History,
   Message_options,
+  SHARED_DOCS,
+  SHARED_LINKS
 };
