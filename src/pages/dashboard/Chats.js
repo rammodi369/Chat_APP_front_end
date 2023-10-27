@@ -83,23 +83,27 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     )
   }
 
-const Search = styled("div")(({ theme }) => ({
+
+  const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: 20,
     backgroundColor: alpha(theme.palette.background.default, 1),
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
-    display: "flex"
+    display:"flex"
+    
 }));
 const SearchIconWrapper = styled("div")(({ theme }) => ({
+    height:"100%",
     padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    PointerEvents: "none",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    
+
+    position: "relative",
+    PointerEvents: "none",
 }))
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
@@ -127,7 +131,7 @@ const Chats = () => {
                 <Stack sx={{ width: "100%" }}>
                     <Search >
                         <SearchIconWrapper>
-                            <MagnifyingGlass color='#709ce6' />
+                            <MagnifyingGlass color='#709ce6'  height={"40px"} />
                         </SearchIconWrapper>
                         <StyledInputBase placeholder='              search' inputProps={{ "aria-label": "search" }} />
                     </Search>

@@ -300,7 +300,69 @@ const Message_options = [
     title: "Delete Message",
   },
 ];
-
+const CallLogs=[
+  {
+    id:0,
+    img:faker.image.avatar(),
+    name:faker.name.firstName(),
+    missed:false,
+    incoming:true
+  },
+  {
+    id:1,
+    img:faker.image.avatar(),
+    name:faker.name.firstName(),
+    missed:false,
+    incoming:true
+  },
+  {
+    id:2,
+    img:faker.image.avatar(),
+    name:faker.name.firstName(),
+    missed:true,
+    incoming:false
+  },
+  {
+    id:3,
+    img:faker.image.avatar(),
+    name:faker.name.firstName(),
+    missed:true,
+    incoming:true
+  },
+  {
+    id:4,
+    img:faker.image.avatar(),
+    name:faker.name.firstName(),
+    missed:false,
+    incoming:true
+  },
+]
+const MembersList=[
+  {
+    id:0, 
+    img:faker.image.avatar(),
+    name:faker.name.fullName(), 
+    online:true
+  },
+  {
+    id:1, 
+    img:faker.image.avatar(),
+    name:faker.name.fullName(), 
+    online:false
+  },
+  {
+    id:2, 
+    img:faker.image.avatar(),
+    name:faker.name.fullName(), 
+    online:true
+  },
+  {
+    id:3, 
+    img:faker.image.avatar(),
+    name:faker.name.fullName(), 
+    online:true
+  },
+]
 export {
   Profile_Menu,
   Nav_Setting,
@@ -309,5 +371,7 @@ export {
   Chat_History,
   Message_options,
   SHARED_DOCS,
-  SHARED_LINKS
+  SHARED_LINKS,
+  CallLogs,
+  MembersList
 };
