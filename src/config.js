@@ -3,9 +3,9 @@ import { enUS, frFR, zhCN, viVN, arSD } from '@mui/material/locale';
 
 // routes
 import { PATH_DASHBOARD } from "./routes/paths";
-
+export const Base_url= "http://localhost:3001";
 export const defaultSettings = {
-  themeMode: "light",
+  themeMode: "light",   
   themeDirection: "ltr",
   themeContrast: "default",
   themeLayout: "horizontal",

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { dispatch } from "../store";
+
 const initialState ={
     sidebar:{
         open:false, 
@@ -20,14 +20,28 @@ const slice=createSlice({
 })
 export default slice.reducer
 export function toggleSiderbar(){
-  return async ()=>{
+  return async (dispatch, getState)=>{
     dispatch(slice.actions.toggleSiderbar())
   }
 }
 export function updateSidebarType(type){
-return async ()=>{
+return async (dispatch, getState)=>{
     dispatch(slice.actions.updateSidebarType({
         type,
     }))
 }
 }
+export const showSnackbar =
+  ({ severity, message }) =>
+  async (dispatch, getState) => {
+    dispatch(
+      slice.actions.openSnackBar({
+        message,
+        severity,
+      })
+    );
+
+    setTimeout(() => {
+      dispatch(slice.actions.closeSnackBar());
+    }, 4000);
+  };

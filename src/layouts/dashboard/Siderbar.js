@@ -8,6 +8,8 @@ import { Avatar, Box ,Divider,IconButton,Stack ,Switch,Menu, MenuItem} from "@mu
 import useSettings from "../../hooks/useSettings"
 import { Gear } from "phosphor-react";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { LogoutUser } from '../../redux/Slices/auth';
 
 const getPath=(index)=>{
   switch(index){
@@ -38,6 +40,7 @@ switch (index){
 }
 
 const Siderbar = () => {
+  const dispatch=useDispatch()
   const Navigate=useNavigate();
     const [selected,setSelected]=useState(0);
     const theme=useTheme();
@@ -125,10 +128,21 @@ const Siderbar = () => {
       >
      <Stack spacing={1} px={1}>
                 {Profile_Menu.map((el, idx)=>(
-                    <MenuItem >
+                    <MenuItem 
+                    onClick={()=>{
+                      handleClick();
+                     
+                    
+                    }}
+                    >
                     <Stack onClick={()=>{
-                  
-                      Navigate(getMenu(idx))
+                   if(idx === 2){
+
+                    dispatch(LogoutUser())
+                  }else{
+                    
+                    Navigate(getMenu(idx))
+                  }
                     }}  sx={{width:100, }} direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
                      <span>
                      {el.title}

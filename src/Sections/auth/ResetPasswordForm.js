@@ -10,12 +10,14 @@ import { Stack, Alert, Button } from "@mui/material";
 // components
 import FormProvider from "../../components/hook-form/FormProvider";
 import RHFTextField from "../../components/hook-form/RHFTextField";
+import { useDispatch } from "react-redux";
+import { ForgotPassword } from "../../redux/Slices/auth";
 
 
 // ----------------------------------------------------------------------
 
 export default function ResetPasswordForm() {
-
+  const dispatch = useDispatch();
 
     //   const {isLoading} = useSelector((state) => state.auth);
 
@@ -46,8 +48,8 @@ export default function ResetPasswordForm() {
     const onSubmit = async (data) => {
         try {
             console.log(data);
-            // submit data to backend
-            //   dispatch(LoginUser(data));
+            
+              dispatch(ForgotPassword(data));
         } catch (error) {
             console.error(error);
             reset();

@@ -5,7 +5,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 // @mui
-import { Link, Stack, Alert, IconButton, InputAdornment } from "@mui/material";
+import { Link, Stack, Alert, IconButton, InputAdornment, Button } from "@mui/material";
 // import { LoadingButton } from "@mui/lab";
 // components
 import FormProvider from "../../components/hook-form/FormProvider";
@@ -13,6 +13,7 @@ import  RHFTextField  from "../../components/hook-form/RHFTextField";
 import { Eye, EyeSlash } from "phosphor-react";
 
 import { useDispatch, useSelector } from "react-redux";
+import { LoginUser } from "../../redux/Slices/auth";
 
 // ----------------------------------------------------------------------
 
@@ -49,8 +50,8 @@ export default function AuthLoginForm() {
   const onSubmit = async (data) => {
     try {
       console.log(data);
-      // submit data to backend
-    //   dispatch(LoginUser(data));
+      // submit data to backe
+      dispatch(LoginUser(data));
     } catch (error) {
       console.error(error);
       reset();
@@ -95,13 +96,13 @@ export default function AuthLoginForm() {
         </Link>
       </Stack>
 
-      {/* <LoadingButton
+      <Button
         fullWidth
         color="inherit"
         size="large"
         type="submit"
         variant="contained"
-        loading={isLoading}
+        // loading={isLoading}
         sx={{
           bgcolor: "text.primary",
           color: (theme) =>
@@ -114,7 +115,7 @@ export default function AuthLoginForm() {
         }}
       >
         Login
-      </LoadingButton> */}
+      </Button>
     </FormProvider>
   );
 }
