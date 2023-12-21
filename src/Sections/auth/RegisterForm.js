@@ -4,19 +4,22 @@ import * as Yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup';
 import {useForm} from "react-hook-form"
 import FormProvider from '../../components/hook-form/FormProvider';
-import { Alert, Button, IconButton, InputAdornment, Stack } from '@mui/material';
+import { Alert,Button, IconButton, InputAdornment, Stack } from '@mui/material';
 import RHFTextField from '../../components/hook-form/RHFTextField';
+// import { LoadingButton } from "@mui/lab";
 import { Eye, EyeSlash } from 'phosphor-react';
 import { common } from '@mui/material/colors';
+import { RegisterUser } from '../../redux/Slices/auth';
+import { useDispatch, useSelector } from "react-redux";
 
-const RegisterForm = () => {
-    const [showPassword, setShowPassword] = useState(false);
+export default function RegisterForm() {
+  const dispatch = useDispatch();
+  const {isLoading} = useSelector((state) => state.auth);
+  const [showPassword, setShowPassword] = useState(false);
 
-//   const {isLoading} = useSelector((state) => state.auth);
-
-  const registerSchema = Yup.object().shape({
-    fistName:Yup.string().required("First Name is required"),
-    lastName:Yup.string().required("last  Name is required"),
+  const LoginSchema = Yup.object().shape({
+    firstName: Yup.string().required("First name required"),
+    lastName: Yup.string().required("Last name required"),
     email: Yup.string()
       .required("Email is required")
       .email("Email must be a valid email address"),
@@ -24,14 +27,14 @@ const RegisterForm = () => {
   });
 
   const defaultValues = {
-    firstName:"",
-    lastName:"",
+    firstName: "",
+    lastName: "",
     email: "demo@tawk.com",
     password: "demo1234",
-  }; 
+  };
 
   const methods = useForm({
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(LoginSchema),
     defaultValues,
   });
 
@@ -39,14 +42,13 @@ const RegisterForm = () => {
     reset,
     setError,
     handleSubmit,
-    formState: { errors , isSubmitting, isSubmitSuccessful },
+    formState: { errors },
   } = methods;
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
       // submit data to backend
-    //   dispatch(LoginUser(data));
+      dispatch(RegisterUser(data));
     } catch (error) {
       console.error(error);
       reset();
@@ -56,18 +58,25 @@ const RegisterForm = () => {
       });
     }
   };
+
   return (
-  <FormProvider  methods={methods} onSubmit={handleSubmit(onSubmit)} >
-<Stack spacing={3}>
-{!!errors.afterSubmit && (
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <Stack spacing={3} mb={4}>
+        {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
-        <Stack direction={{xs:"column", sm:"row"}} spacing={2}>
-<RHFTextField name="firstName" label="First Name"  />
-<RHFTextField name="lastName" label=" Last Name"/>
+
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+          <RHFTextField name="firstName" label="First name" />
+          <RHFTextField name="lastName" label="Last name" />
         </Stack>
-        <RHFTextField name="email" label="Email"  />
-        <RHFTextField name="password" label="Password" type={showPassword ? "text" : "password"}
+
+        <RHFTextField name="email" label="Email address" />
+
+        <RHFTextField
+          name="password"
+          label="Password"
+          type={showPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -79,20 +88,30 @@ const RegisterForm = () => {
                 </IconButton>
               </InputAdornment>
             ),
-          }} />
-<Button fullWidth color='inherit' size='large' type='submit' variant='contained' sx={{bgcolor:"text.primary", color:(theme)=>theme.palette.mode==="light"?"common.white":"grey.880",
-"&:hover":{
-    bgcolor:"text.primary",
-    color:(theme)=>
-    theme.palette.mode ==="light" ? "common.white" : 'grey.880'
-}
-}}>
-Register
-</Button>
-</Stack>
+          }}
+        />
+      </Stack>
 
-  </FormProvider>
-  )
+      <Button
+        fullWidth
+        color="inherit"
+        size="large"
+        type="submit"
+        variant="contained"
+        // loading={isLoading}
+        sx={{
+          bgcolor: "text.primary",
+          color: (theme) =>
+            theme.palette.mode === "light" ? "common.white" : "grey.800",
+          "&:hover": {
+            bgcolor: "text.primary",
+            color: (theme) =>
+              theme.palette.mode === "light" ? "common.white" : "grey.800",
+          },
+        }}
+      >
+        Create Account
+      </Button>
+    </FormProvider>
+  );
 }
-
-export default RegisterForm
